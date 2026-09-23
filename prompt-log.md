@@ -69,3 +69,12 @@
 - Open Question ที่ยังค้าง: Q-02 เรื่องรูปแบบและวิธีออกหมายเลขคิว ทำให้ T-05, T-06, T-13 และ T-14 อยู่สถานะรอ Q-02
 
 ---
+
+## 2569-09-23 08:13 คำสั่ง: /implement T-01 specs/001-booking/tasks.md
+
+- ไฟล์ที่สร้าง: `backend/app/db/models.py`, `backend/app/db/session.py`, `backend/app/db/migrations/001_init.py`, `backend/tests/conftest.py`
+- ผลลัพธ์: สร้างโมเดลและ migration สำหรับ `slots`, `bookings` และ `audit_logs` โดย `bookings` เก็บ `hn` และไม่มี `national_id`
+- ผล test: `pytest` ไม่พบ test ที่ collect จากโครงไฟล์ของ T-01; ตรวจ migration และ schema ด้วย runtime check บน SQLite in-memory ผ่าน และ `compileall` ผ่าน
+- สิ่งที่เกือบต้องเดา: ชนิดข้อมูลและค่าเริ่มต้นของฟิลด์ไม่ได้ระบุใน spec/plan จึงใช้ชนิดข้อมูลที่สอดคล้องกับชื่อฟิลด์และไม่กำหนดค่าเริ่มต้นหรือรูปแบบ `queue_no` เพิ่มเติม เพราะ Q-02 ยังเปิดอยู่
+
+---
