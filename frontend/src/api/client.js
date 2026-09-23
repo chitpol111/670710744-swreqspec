@@ -18,3 +18,14 @@ export const api = {
     return { status: res.status, body: await res.json() }
   },
 }
+
+// API จำลองสำหรับหน้าจอและ test ของ T-11 (FR-BKG-01, FR-BKG-06)
+export const mockApi = {
+  async getSlots({ dateFrom, packageCode }) {
+    const slots = {
+      BASIC: [{ id: 'basic-0900', slot_date: dateFrom, start_time: '09:00', remaining: 2 }],
+      PREMIUM: [{ id: 'premium-1000', slot_date: dateFrom, start_time: '10:00', remaining: 1 }],
+    }
+    return slots[packageCode] ?? []
+  },
+}
