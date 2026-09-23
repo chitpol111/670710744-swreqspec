@@ -60,3 +60,12 @@
 - ระบุว่าไม่มี Open Questions ค้างอยู่ในแผน
 
 ---
+
+## 2569-09-23 07:58 คำสั่ง: /tasks specs/001-booking/spec.md
+
+- เครื่องมือ: Copilot in Codespaces
+- ไฟล์: specs/001-booking/tasks.md
+- ผลลัพธ์: แตก plan.md เป็น 16 tasks เรียงตามการพึ่งพา พร้อมตารางตรวจความครบของ AC และ Constraint
+- Open Question ที่ยังค้าง: Q-02 เรื่องรูปแบบและวิธีออกหมายเลขคิว ทำให้ T-05, T-06, T-13 และ T-14 อยู่สถานะรอ Q-02
+
+---
