@@ -1,37 +1,17 @@
-"""Database engine and session setup."""
-
-import os
-from collections.abc import Generator
-
+# สร้าง engine และ session ของฐานข้อมูล (CON-TECH-01)
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
-from app.db.models import Base
+from app.config import DATABASE_URL
 
-
-def create_database_engine():
-    """Create the configured database engine (CON-TECH-01)."""
-
-    database_url = os.getenv("DATABASE_URL", "sqlite:///:memory:")
-    connect_args = {"check_same_thread": False} if database_url.startswith("sqlite") else {}
-    return create_engine(database_url, connect_args=connect_args)
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine, autoflush=False)
 
 
-engine = create_database_engine()
-SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
-
-
-def get_db() -> Generator[Session, None, None]:
-    """Provide a database session for an API request (CON-TECH-01)."""
-
-    database = SessionLocal()
+def get_db():
+    """ส่ง session ให้ API แต่ละตัว แล้วปิดเมื่อจบ"""
+    db = SessionLocal()
     try:
-        yield database
+        yield db
     finally:
-        database.close()
-
-
-def create_tables() -> None:
-    """Create all booking tables for the configured database."""
-
-    Base.metadata.create_all(bind=engine)
+        db.close()
